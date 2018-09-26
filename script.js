@@ -13,16 +13,35 @@ const timeLookUp = {
      timeToDisplay: 1800,
   },
   medium: {
-     timeBetween: 1500,
-     timeToDisplay: 1300,
-  },
-  hard: {
      timeBetween: 1000,
      timeToDisplay: 800,
+  },
+  hard: {
+     timeBetween: 500,
+     timeToDisplay: 300,
   }
 }
 
+var diffLevelOne = timeLookUp.easy.timeBetween;
+var diffLevelTwo = timeLookUp.easy.timeToDisplay;
+
     $('#levelEasy').click(function() {
+        console.log(diffLevelOne);
+        startSequence();
+    })
+
+    $('#levelMedium').click(function() {
+        diffLevelOne = timeLookUp.medium.timeBetween;
+        console.log(diffLevelOne);
+        diffLevelTwo = timeLookUp.medium.timeToDisplay;
+        //console.log(diffLevelTwo);
+        startSequence();
+    })
+
+    $('#levelHard').click(function() {
+        diffLevelOne = timeLookUp.hard.timeBetween;
+        console.log(diffLevelOne);
+        diffLevelTwo = timeLookUp.hard.timeToDisplay;
         startSequence();
     })
 
@@ -55,6 +74,9 @@ const timeLookUp = {
                 //$message = $('.instruction').html(" ");
                 startSequence();
             }
+            if(userSequence.length === computerSequence.length && userSequence.length === 8) {
+                $message = $('.instruction').html("Winner!").css({'color':'green','font-weight': 'bold'});
+            }
         })
     }
 /* Temporary opacity over image (userSequence) */
@@ -65,7 +87,7 @@ function addOpacityUser(id, img) {
         // if (userSequence.length === 3) {
         //     $message = $('.instruction').html("Dilyara!!");
         //     }
-    }, 1800); 
+    }, diffLevelTwo); 
 }
 /* compare user sequence against computer's */
 function userCorrect() {
@@ -117,7 +139,8 @@ function startSequence(cb) {
       if(i === computerSequence.length) {
         clearInterval(myinterval);
       }
-   },2000);
+   },diffLevelOne);
+   console.log(diffLevelOne);
    doAfterSequence();
 }
 
@@ -142,10 +165,6 @@ function addOpacityComputer(id, img) {
             $message = $('.instruction').html("Play!"); 
         }
         //$message = $('.instruction').html("Play"); 
-    }, 1800); 
+    }, diffLevelTwo); 
 }
-
-$('#levelMedium').click(function() {
-    startSequence();
-})
 
