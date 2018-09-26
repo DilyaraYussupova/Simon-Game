@@ -7,6 +7,8 @@ userSequence = [];
 computerSequence = [];
 var id, img, level = 0, score = 0;
 
+var beepAudio = new Audio('http://soundbible.com/mp3/Robot_blip-Marianne_Gagnon-120342607.mp3');
+
 const timeLookUp = {
   easy: {
      timeBetween: 2000,
@@ -51,6 +53,7 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
         /* User img listener */
         $('.imgGrid').click(function() {
             $message = $('.instruction').html("Play!");
+            beepAudio.play();
             id = $(this).attr('id');
             img = $(this).attr('class');
             console.log(id + " " + img);
@@ -155,6 +158,7 @@ function getRandomNumber() {
 /* Temporary opacity over image (computerSequence) */
 function addOpacityComputer(id, img) {
     $('#' + id).addClass(img+"-tinted");
+    beepAudio.play();
     setTimeout(function() {
         $('#' + id).removeClass(img+"-tinted");
         if(computerSequence.length === 1 && level === 1) {
