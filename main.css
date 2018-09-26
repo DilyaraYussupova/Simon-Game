@@ -6,6 +6,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     width: 100%;
+    height: 500px;
 }
     
 .main-container {
@@ -27,11 +28,24 @@ body {
     right: 2px;
     width: 90%;
 }
+
+#main:hover {
+    transition: 0.70s;
+    -webkit-transition: 0.70s;
+    -moz-transition: 0.70s;
+    -ms-transition: 0.70s;
+    -o-transition: 0.70s;
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
     
 .image-button {
     text-align: center;
     position: absolute;
-    top: 50px;
+    top: 5px;
     left: 150px;
 }
     
@@ -145,9 +159,33 @@ span {
     border-radius: 10%;
 }
 
+.resetBtn {
+    display: block;
+    width: 65px;
+    background-color: #ffcc00;
+    text-align: center;
+    padding: 10px;
+    margin: -10px auto;
+    color: white;
+    font-size: 15px;
+    font-family: 'Libre Baskerville', serif;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
 .imgGrid-tinted {
     opacity: .2;
-    border: 5px solid rgb(196, 20, 20);
+    border: 3px solid rgb(196, 20, 20);
+    transition: 0.70s;
+    -webkit-transition: 0.70s;
+    -moz-transition: 0.70s;
+    -ms-transition: 0.70s;
+    -o-transition: 0.70s;
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
 }
 
 
