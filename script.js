@@ -58,7 +58,6 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
             img = $(this).attr('class');
             console.log(id + " " + img);
             userSequence.push(id);
-            //console.log(userSequence);
             addOpacityUser(id, img);
 
         // check whether the order and img of user sequence are correct
@@ -80,15 +79,12 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
 
             // compare length of each sequences
             if(userSequence.length === computerSequence.length) {
-                // increment score each time sequence is correc
+                // increment the score each time the sequence is correct
                 ++score;
-                //console.log(score);
                 $('.scoreBox').text("Score: " + score);
                 userSequence = [];
-                //$message = $('.instruction').html(" ");
                 startSequence();
-            }
-            
+            }  
         })
     }
 /* Temporary opacity over image (userSequence) */
@@ -96,12 +92,9 @@ function addOpacityUser(id, img) {
     $('#' + id).addClass(img+"-tinted");
     setTimeout(function() {
         $('#' + id).removeClass(img+"-tinted");
-        // if (userSequence.length === 3) {
-        //     $message = $('.instruction').html("Dilyara!!");
-        //     }
     }, diffLevelTwo); 
 }
-/* compare user sequence against computer's */
+/* compare usersequence against computer's */
 function userCorrect() {
    for(var i = 0; i < userSequence.length; i++) {
        if(userSequence[i] != computerSequence[i]) {
@@ -134,7 +127,6 @@ function resetGame() {
 /* Computer sequence */
 function startSequence(cb) {
     ++level;
-    //console.log("Level: " + level);
     $('.levelBox').text("Level: " + level);
    getRandomNumber();
    console.log(computerSequence.length);
@@ -142,7 +134,6 @@ function startSequence(cb) {
    var i = 0;
    var myinterval = setInterval(function() {
       id = computerSequence[i];
-      //console.log(id);
       img = $('#' + id).attr('class');
       $message = $('.instruction').html("Watch!");
       console.log(id + " " + img);
@@ -161,7 +152,6 @@ function getRandomNumber() {
     var random = Math.floor(Math.random()*8);
     console.log(random);
     computerSequence.push(random);
-    //console.log(computerSequence);
 }
 
 /* Temporary opacity over image (computerSequence) */
@@ -171,11 +161,9 @@ function addOpacityComputer(id, img) {
     setTimeout(function() {
         $('#' + id).removeClass(img+"-tinted");
         if(level === 1) {
-            //console.log(computerSequence.length);
         $message = $('.instruction').html("Play!");
         } else {
             $message = $('.instruction').html("Watch!");
         }
     }, diffLevelTwo); 
 }
-
