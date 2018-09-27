@@ -5,7 +5,7 @@ There are 3 difficulty levels to choose from, thus player can start with the slo
 
 The series of illuminated keys is randomly generated, the player has to replicate the sequence, keeping the exact order. There is no time restriction between each sequence. 
 
-![ScreenShot](/img/screenshot.png)
+![ScreenShot](../img/screenshot.png)
 
 ## User stories
 * User can choose from easy, medium and hard levels of difficulty
