@@ -1,7 +1,7 @@
 
 // cached DOM elements
 var $message = $('.instruction').html();
-console.log($message);
+
 // variables
 userSequence = [];
 computerSequence = [];
@@ -67,6 +67,17 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
             userSequence = [];
             }
 
+            if(userSequence.length === 8) {
+                $message = $('.instruction').html("Winner!").css({'color':'green','font-weight': 'bold'});
+                $('.levelBox').css({'color':'green','font-weight': 'bold'});
+                $('.scoreBox').css({'color':'green','font-weight': 'bold'});
+                console.log("Congrats!");
+                $('.resetBtn').click(function() {
+                    resetGame();
+                })
+                startSequence.stop();
+            }
+
             // compare length of each sequences
             if(userSequence.length === computerSequence.length) {
                 // increment score each time sequence is correc
@@ -77,9 +88,7 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
                 //$message = $('.instruction').html(" ");
                 startSequence();
             }
-            if(userSequence.length === computerSequence.length && userSequence.length === 8) {
-                $message = $('.instruction').html("Winner!").css({'color':'green','font-weight': 'bold'});
-            }
+            
         })
     }
 /* Temporary opacity over image (userSequence) */
@@ -161,14 +170,12 @@ function addOpacityComputer(id, img) {
     beepAudio.play();
     setTimeout(function() {
         $('#' + id).removeClass(img+"-tinted");
-        if(computerSequence.length === 1 && level === 1) {
+        if(level === 1) {
             //console.log(computerSequence.length);
         $message = $('.instruction').html("Play!");
         } else {
             $message = $('.instruction').html("Watch!");
-            $message = $('.instruction').html("Play!"); 
         }
-        //$message = $('.instruction').html("Play"); 
     }, diffLevelTwo); 
 }
 
