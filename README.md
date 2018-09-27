@@ -7,13 +7,24 @@ The series of illuminated keys is randomly generated, the player has to replicat
 
 ![ScreenShot](img/Screenshot.png)
 
-## Technology
+## Technologies Used
 * HTML
 * CSS
 * JS
   * Jquery
 
-## User stories
+## Getting Started:
+* https://dilyarayussupova.github.io/Simon-Game/
+* To start a game, please choose difficulty level and press corresponding button.
+* In both cases: win or loss, please press "RESET" button first, then click one of the buttons - Easy/Medium/Hard, to start a new round.
+
+## Next Steps
+* Planned features 
+  * Responsive "Mobile-first" web page.
+  * Congratulations animation with confetti --> when the player wins.
+  * Customised alert modal box --> when the player either wins or losses.
+
+<!-- ## User stories
 * User can choose from easy, medium and hard levels of difficulty
 * User sees gameboard
   * User sees message "Watch!" or "Play!"
@@ -50,5 +61,5 @@ Main screen has 2 parts: on the left side is an image and level of difficulty; o
 * computerSequence - holds computer's sequence (arr)
 * userSequence - holds user's sequence (arr)
 * variables to hold each round scoring and level 
-* variables to hold id and class of each image within the board game table
+* variables to hold id and class of each image within the board game table -->
 
