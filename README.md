@@ -4,7 +4,8 @@ The simon game is a great exercise for training the memory while having fun. Mor
 There are 3 difficulty levels to choose from, thus player can start with the slow speed (easy level) and speed up if he/she feels more confident with the game logic. 
 
 The series of illuminated keys is randomly generated, the player has to replicate the sequence, keeping the exact order. There is no time restriction between each sequence. 
-![alt text](../img/screenshot)
+
+![ScreenShot](/img/screenshot.png)
 
 ## User stories
 * User can choose from easy, medium and hard levels of difficulty
