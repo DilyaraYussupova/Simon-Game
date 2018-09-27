@@ -7,6 +7,12 @@ The series of illuminated keys is randomly generated, the player has to replicat
 
 ![ScreenShot](img/Screenshot.png)
 
+## Technology
+* HTML
+* CSS
+* JS
+  * Jquery
+
 ## User stories
 * User can choose from easy, medium and hard levels of difficulty
 * User sees gameboard

@@ -8,6 +8,8 @@ computerSequence = [];
 var id, img, level = 0, score = 0;
 
 var beepAudio = new Audio('http://soundbible.com/mp3/Robot_blip-Marianne_Gagnon-120342607.mp3');
+var winnerAudio = new Audio('audio/winner.mp3');
+var gameOverAudio = new Audio('audio/gameOver.mp3');
 
 const timeLookUp = {
   easy: {
@@ -28,21 +30,17 @@ var diffLevelOne = timeLookUp.easy.timeBetween;
 var diffLevelTwo = timeLookUp.easy.timeToDisplay;
 
     $('#levelEasy').click(function() {
-        console.log(diffLevelOne);
         startSequence();
     })
 
     $('#levelMedium').click(function() {
         diffLevelOne = timeLookUp.medium.timeBetween;
-        console.log(diffLevelOne);
         diffLevelTwo = timeLookUp.medium.timeToDisplay;
-        //console.log(diffLevelTwo);
         startSequence();
     })
 
     $('#levelHard').click(function() {
         diffLevelOne = timeLookUp.hard.timeBetween;
-        console.log(diffLevelOne);
         diffLevelTwo = timeLookUp.hard.timeToDisplay;
         startSequence();
     })
@@ -56,7 +54,6 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
             beepAudio.play();
             id = $(this).attr('id');
             img = $(this).attr('class');
-            console.log(id + " " + img);
             userSequence.push(id);
             addOpacityUser(id, img);
 
@@ -67,10 +64,14 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
             }
 
             if(userSequence.length === 8) {
+                winnerAudio.play();
                 $message = $('.instruction').html("Winner!").css({'color':'green','font-weight': 'bold'});
                 $('.levelBox').css({'color':'green','font-weight': 'bold'});
                 $('.scoreBox').css({'color':'green','font-weight': 'bold'});
-                console.log("Congrats!");
+                $('.imgGrid').off('click')
+                setTimeout(function() {
+                $message = $('.instruction').html("Press Reset!").css({'color':'yellow','font-weight': 'normal'});
+                }, 2500);
                 $('.resetBtn').click(function() {
                     resetGame();
                 })
@@ -79,12 +80,12 @@ var diffLevelTwo = timeLookUp.easy.timeToDisplay;
 
             // compare length of each sequences
             if(userSequence.length === computerSequence.length) {
-                // increment the score each time the sequence is correct
+                // increment score each time sequence is correc
                 ++score;
                 $('.scoreBox').text("Score: " + score);
                 userSequence = [];
                 startSequence();
-            }  
+            }
         })
     }
 /* Temporary opacity over image (userSequence) */
@@ -94,7 +95,7 @@ function addOpacityUser(id, img) {
         $('#' + id).removeClass(img+"-tinted");
     }, diffLevelTwo); 
 }
-/* compare usersequence against computer's */
+/* compare user sequence against computer's */
 function userCorrect() {
    for(var i = 0; i < userSequence.length; i++) {
        if(userSequence[i] != computerSequence[i]) {
@@ -105,13 +106,17 @@ function userCorrect() {
 }
 
 function gameOver() {
+    gameOverAudio.play();
     $message = $('.instruction').html("Game Over!").css({'color':'red','font-weight': 'bold'});
     $('.levelBox').css({'color':'red','font-weight': 'bold'});
     $('.scoreBox').css({'color':'red','font-weight': 'bold'});
-  console.log("game over");
-  $('.resetBtn').click(function() {
-      resetGame();
-  })
+    $('.imgGrid').off('click');
+    setTimeout(function() {
+    $message = $('.instruction').html("Press Reset!").css({'color':'yellow','font-weight': 'normal'});
+    }, 2500);
+    $('.resetBtn').click(function() {
+        resetGame();
+    })
 }
 /* Reset the game */
 function resetGame() {
@@ -129,28 +134,24 @@ function startSequence(cb) {
     ++level;
     $('.levelBox').text("Level: " + level);
    getRandomNumber();
-   console.log(computerSequence.length);
    
    var i = 0;
    var myinterval = setInterval(function() {
       id = computerSequence[i];
       img = $('#' + id).attr('class');
       $message = $('.instruction').html("Watch!");
-      console.log(id + " " + img);
       addOpacityComputer(id, img);
       i++;
       if(i === computerSequence.length) {
         clearInterval(myinterval);
       }
    },diffLevelOne);
-   console.log(diffLevelOne);
    doAfterSequence();
 }
 
 /* Generate random number */
 function getRandomNumber() {
     var random = Math.floor(Math.random()*8);
-    console.log(random);
     computerSequence.push(random);
 }
 
@@ -161,6 +162,7 @@ function addOpacityComputer(id, img) {
     setTimeout(function() {
         $('#' + id).removeClass(img+"-tinted");
         if(level === 1) {
+            //console.log(computerSequence.length);
         $message = $('.instruction').html("Play!");
         } else {
             $message = $('.instruction').html("Watch!");
